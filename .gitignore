@@ -34,7 +34,8 @@ ompiled source #
 .Spotlight-V100
 .Trashes
 Icon?
-ehthumbs.db
+ehthbs.db
 Thumbs.db
 
+*.iml
 *.idea
