@@ -61,7 +61,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.openwebbeans:openwebbeans-ee-common:1.2.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.openwebbeans:openwebbeans-web:1.2.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.openwebbeans:openwebbeans-el22:1.2.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.javassist:javassist:3.17.1-GA" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.openjpa:openjpa:2.3.0-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-lang:commons-lang:2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
@@ -73,6 +72,12 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.fusesource.jansi:jansi:1.8" level="project" />
     <orderEntry type="library" name="Maven: umflix-persistence:umflix-persistence:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: autenticationhandler:autenticationhandler:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.15" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.jms:jms:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jdmk:jmxtools:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jmx:jmxri:1.2.1" level="project" />
   </component>
 </module>
 
