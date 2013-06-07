@@ -4,6 +4,7 @@ import edu.um.umflix.reviewmanager.ReviewManager;
 import edu.um.umflix.reviewmanager.exceptions.ClipNotFoundRuntimeException;
 import edu.um.umflix.reviewmanager.exceptions.LicenseNotFoundRuntimeException;
 import edu.um.umflix.reviewmanager.exceptions.MovieNotFoundRuntimeException;
+import edu.um.umflix.reviewmanager.exceptions.NotReviewerException;
 import edu.umflix.authenticationhandler.AuthenticationHandler;
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
 import edu.umflix.exceptions.ClipNotFoundException;
@@ -25,35 +26,39 @@ import java.util.List;
  */
 @Stateless(name="ReviewManager")
 public class ReviewManagerImpl implements ReviewManager {
-    static Logger log = Logger.getLogger(ReviewManagerImpl.class);
+    Logger log = Logger.getLogger(ReviewManagerImpl.class);
 
     @EJB(beanName = "AuthentificationHandler")
     protected AuthenticationHandler aHandler;
-    @EJB
+    @EJB(beanName="MovieDao")
     protected MovieDao movieDAO;
-    @EJB
+    @EJB(beanName="LicenseDao")
     protected LicenseDao licenseDAO;
 
     @Override
-    public List<Movie> getMovieToReview(String token) throws InvalidTokenException{
+    public List<Movie> getMovieToReview(String token) throws InvalidTokenException,NotReviewerException{
         List<Movie> pendingMovies = null;
-        if(!aHandler.validateToken(token)) new InvalidTokenException();
-
-        User reviewer = aHandler.getUserOfToken(token);
-        if(aHandler.isUserInRole(token,reviewer.getRole())){
-           pendingMovies = movieDAO.getDisabledMovies();
+        if(!aHandler.validateToken(token)){
+            new InvalidTokenException();
         }
 
+        User reviewer = aHandler.getUserOfToken(token);
+        if(!aHandler.isUserInRole(token,reviewer.getRole())){
+          throw new NotReviewerException();
+        }
+        pendingMovies = movieDAO.getDisabledMovies();
 
         return pendingMovies;
     }
 
     @Override
-    public void accept(String token, Long movieID, Long licenseID) throws InvalidTokenException{
+    public void accept(String token, Long movieID, Long licenseID) throws InvalidTokenException,NotReviewerException{
         if(!aHandler.validateToken(token))throw new InvalidTokenException();
 
         User reviewer = aHandler.getUserOfToken(token);
-        if(aHandler.isUserInRole(token,reviewer.getRole())){
+        if(!aHandler.isUserInRole(token,reviewer.getRole())){
+            throw new NotReviewerException();
+        }
            try{
               License license = licenseDAO.getLicenseById(licenseID);
               license.setAccepted(true);
@@ -73,15 +78,17 @@ public class ReviewManagerImpl implements ReviewManager {
                log.error(e);
                throw new LicenseNotFoundRuntimeException();
            }
-        }
+        log.info("License and Movie accepted");
     }
 
     @Override
-    public void reject(String token, Long movieID, Long licenseID) throws InvalidTokenException{
+    public void reject(String token, Long movieID, Long licenseID) throws InvalidTokenException,NotReviewerException{
         if(!aHandler.validateToken(token))throw new InvalidTokenException();
 
         User reviewer = aHandler.getUserOfToken(token);
-        if(aHandler.isUserInRole(token,reviewer.getRole())){
+        if(!aHandler.isUserInRole(token,reviewer.getRole())){
+         throw new NotReviewerException();
+        }
             try{
                 License license = licenseDAO.getLicenseById(licenseID);
                 license.setAccepted(false);
@@ -107,6 +114,7 @@ public class ReviewManagerImpl implements ReviewManager {
                 log.error(e);
                 throw new LicenseNotFoundRuntimeException();
             }
-        }
+        log.info("Movie and/or License rejected");
     }
+
 }

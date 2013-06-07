@@ -7,6 +7,7 @@
     <groupId>review-manager</groupId>
     <artifactId>review-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
 
     <repositories>
         <repository>
@@ -35,7 +36,7 @@
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>openejb-core</artifactId>
-            <version>4.6.0-SNAPSHOT</version>
+            <version>4.5.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -49,13 +50,26 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.15</version>
+            <version>1.2.17</version>
         </dependency>
     </dependencies>
 
-
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>emma-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     
 </project>
