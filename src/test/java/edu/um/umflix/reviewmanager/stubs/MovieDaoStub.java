@@ -19,12 +19,16 @@ public class MovieDaoStub implements MovieDao{
 
     public MovieDaoStub(){
         ArrayList<License> licenses = new ArrayList<License>();
-        License license1=new License(false,null,null,null,Long.valueOf(1),null,null,null,null);
-        License license2=new License(false,null,null,null,Long.valueOf(2),null,null,null,null);
+        License license1=new License(false,null,null,null,null,null,null,null);
+        license1.setId(Long.valueOf(0));
+        License license2=new License(false,null,null,null,null,null,null,null);
+        license2.setId(Long.valueOf(1));
         licenses.add(license1);
         licenses.add(license2);
         movies = new ArrayList<Movie>();
-        movies.add(new Movie("action",Long.valueOf(1),licenses,new Date(),"Armagedon",false,null,null,null,null));
+        Movie movie = new Movie(null,null,null,null,false,"action",licenses,new Date(),"Avatar");
+        movie.setId(Long.valueOf(0));
+        movies.add(movie);
     }
 
     @Override
@@ -55,7 +59,12 @@ public class MovieDaoStub implements MovieDao{
     }
 
     @Override
-    public void updateMovie(Movie movie) throws MovieNotFoundException, LicenseNotFoundException, ClipNotFoundException {
+    public List<Movie> getMovieListByKey(String s) {
+        return null;
+    }
+
+    @Override
+    public void updateMovie(Movie movie) throws MovieNotFoundException {
         for(Movie mov : movies){
           if(mov.getId().equals(movie.getId())){
               mov = movie;

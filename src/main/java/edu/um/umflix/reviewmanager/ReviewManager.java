@@ -4,13 +4,13 @@ import edu.um.umflix.reviewmanager.exceptions.NotReviewerException;
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
 import edu.umflix.model.Movie;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 import java.util.List;
 
 /**
  * Interface that defines the actions of the reviewer of the movies before inserting them into UMFlix
  */
-@Remote
+@Local
 public interface ReviewManager {
     /**
      * Method that returns all the movies that are pending to review
