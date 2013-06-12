@@ -1,13 +1,11 @@
 package edu.um.umflix.reviewmanager.impl;
 
 import edu.um.umflix.reviewmanager.ReviewManager;
-import edu.um.umflix.reviewmanager.exceptions.ClipNotFoundRuntimeException;
 import edu.um.umflix.reviewmanager.exceptions.LicenseNotFoundRuntimeException;
 import edu.um.umflix.reviewmanager.exceptions.MovieNotFoundRuntimeException;
 import edu.um.umflix.reviewmanager.exceptions.NotReviewerException;
 import edu.umflix.authenticationhandler.AuthenticationHandler;
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
-import edu.umflix.exceptions.ClipNotFoundException;
 import edu.umflix.exceptions.LicenseNotFoundException;
 import edu.umflix.exceptions.MovieNotFoundException;
 import edu.umflix.model.License;
@@ -71,10 +69,7 @@ public class ReviewManagerImpl implements ReviewManager {
            }catch(MovieNotFoundException e){
                log.error(e);
                throw new MovieNotFoundRuntimeException();
-           }catch(ClipNotFoundException e){
-               log.error(e);
-               throw new ClipNotFoundRuntimeException();
-           } catch (LicenseNotFoundException e){
+           }catch (LicenseNotFoundException e){
                log.error(e);
                throw new LicenseNotFoundRuntimeException();
            }
@@ -107,10 +102,7 @@ public class ReviewManagerImpl implements ReviewManager {
             }catch(MovieNotFoundException e){
                 log.error(e);
                 throw new MovieNotFoundRuntimeException();
-            }catch(ClipNotFoundException e){
-                log.error(e);
-                throw new ClipNotFoundRuntimeException();
-            } catch (LicenseNotFoundException e){
+            }catch (LicenseNotFoundException e){
                 log.error(e);
                 throw new LicenseNotFoundRuntimeException();
             }

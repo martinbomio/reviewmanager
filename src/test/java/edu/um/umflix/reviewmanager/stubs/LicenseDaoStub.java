@@ -4,7 +4,6 @@ import edu.umflix.exceptions.LicenseNotFoundException;
 import edu.umflix.model.License;
 import edu.umflix.persistence.LicenseDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,9 +40,10 @@ public class LicenseDaoStub implements LicenseDao{
     }
 
     @Override
-    public void deleteLicenses(ArrayList<License> licenses) throws LicenseNotFoundException {
+    public void deleteLicenses(List<License> licenses) throws LicenseNotFoundException {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
 
     @Override
     public void updateLicense(License license) throws LicenseNotFoundException {
@@ -55,8 +55,4 @@ public class LicenseDaoStub implements LicenseDao{
        }
     }
 
-    @Override
-    public void updateLicenses(ArrayList<License> licenses) throws LicenseNotFoundException {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
