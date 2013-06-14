@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Implementation of the ReviewManager
+ * @inheritDoc
  */
 @Stateless(name="ReviewManager")
 public class ReviewManagerImpl implements ReviewManager {
