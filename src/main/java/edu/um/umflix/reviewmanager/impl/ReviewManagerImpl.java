@@ -26,7 +26,7 @@ import java.util.List;
 public class ReviewManagerImpl implements ReviewManager {
     Logger log = Logger.getLogger(ReviewManagerImpl.class);
 
-    @EJB(beanName = "AuthentificationHandler")
+    @EJB(beanName = "AuthenticationHandler")
     protected AuthenticationHandler aHandler;
     @EJB(beanName="MovieDao")
     protected MovieDao movieDAO;
