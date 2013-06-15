@@ -1,7 +1,5 @@
 package edu.um.umflix.reviewmanager.stubs;
 
-import edu.umflix.exceptions.ClipNotFoundException;
-import edu.umflix.exceptions.LicenseNotFoundException;
 import edu.umflix.exceptions.MovieNotFoundException;
 import edu.umflix.model.License;
 import edu.umflix.model.Movie;
@@ -37,7 +35,7 @@ public class MovieDaoStub implements MovieDao{
     }
 
     @Override
-    public void deleteMovie(Long aLong) throws MovieNotFoundException, LicenseNotFoundException, ClipNotFoundException {
+    public void deleteMovie(Long aLong) throws MovieNotFoundException{
 
     }
 
